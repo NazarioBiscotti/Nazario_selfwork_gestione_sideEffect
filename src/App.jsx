@@ -13,9 +13,7 @@ function App() {
 
   const list = ["Andrea", "Giada", "Manolo", "Rosa"]
   const [data, setData] = useState([])
-  const [users, setUsers] = useState([])
-  const [isTrue, setIsTrue] = useState(false)
-  const [loading, setLoading] = useState("")
+
 
   function card(e) {
 
@@ -25,37 +23,11 @@ function App() {
 
   }
 
-  async function getUsers() {
-
-
-    const promise = await fetch('https://jsonplaceholder.typicode.com/todos')
-    const json = await promise.json()
-
-    if (!isTrue) {
-      setLoading(<div className='text-center mt-5'><h2>loading...</h2></div>)
-
-      setTimeout(() => {
-        setUsers(json)
-        setIsTrue(true)
-        setLoading("")
-      }, 2000)
-
-    } else {
-      setUsers([])
-      setIsTrue(false)
-    }
-
-    console.log(json)
-
-  }
-
-
 
 
 
   return (
     <>
-
 
       <Navbar></Navbar>
       <Header>
@@ -93,16 +65,9 @@ function App() {
           </div>
         </div>
 
-        <LoadingData>
-          <button onClick={getUsers}>ciao</button>
-        </LoadingData>
+        <LoadingData />
 
-        <div>
-          <div>{loading}</div>
-          <ul>
-            {users.map((user, index) => (<li key={index}>{user.title}</li>))}
-          </ul>
-        </div>
+
 
 
 
